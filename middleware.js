@@ -34,6 +34,9 @@ export default function middleware(req) {
     
     // Prevent cross-origin embedding of your site
     'X-Permitted-Cross-Domain-Policies': 'none',
+    
+    // Remove or keep X-Powered-By for security through obscurity
+    'X-Powered-By': null,  // removes the header
   };
 
   // Optional: you could add logic to serve a custom 404 for missing routes,
