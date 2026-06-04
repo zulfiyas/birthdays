@@ -1,6 +1,33 @@
 {
+  "name": "arboblar-jubilee-ages",
+  "version": "1.0.0",
   "private": true,
+  "description": "Веб-сайт: деятели Узбекистана, отмечающие юбилейные возраста (оканчивающиеся на 0 или 5) в выбранный год",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo \"No build step required — static HTML/CSS/JS\"",
+    "start": "vercel start",
+    "deploy": "vercel deploy --prod"
+  },
   "dependencies": {
-    "@vercel/edge": "^0.1.2"
-  }
+    "@vercel/edge": "^1.0.0",
+    "@vercel/node": "^3.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  },
+  "engines": {
+    "node": ">=18.x"
+  },
+  "keywords": [
+    "uzbekistan",
+    "historical-figures",
+    "birthday",
+    "jubilee",
+    "vercel",
+    "edge-middleware"
+  ],
+  "author": "",
+  "license": "MIT"
 }
