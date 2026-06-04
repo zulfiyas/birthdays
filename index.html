@@ -1,96 +1,543 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Маяки истории · Юбилейные возраста</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', 'Roboto', 'Noto Sans', sans-serif;
+        }
+
+        body {
+            background: #faf8f4;
+            color: #1e2a3a;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* шапка минималистичная */
+        .header {
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2c5a2e, #b78c3a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.2px;
+        }
+
+        /* панель: год + компактный выбор категорий */
+        .control-bar {
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            padding: 0.6rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .year-box {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #f2efe8;
+            padding: 0.3rem 1.2rem;
+            border-radius: 3rem;
+        }
+
+        .year-box label {
+            font-weight: 600;
+            color: #3a4a3a;
+            font-size: 0.9rem;
+        }
+
+        #targetYear {
+            font-size: 1rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 2rem;
+            border: 1px solid #cdc2ae;
+            background: white;
+            font-weight: 500;
+            width: 90px;
+            text-align: center;
+        }
+
+        /* компактный дрилл-даун для категорий — кнопка «все» + выпадающий список */
+        .cat-drill {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cat-trigger {
+            background: #e8e2d7;
+            border: none;
+            padding: 0.45rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            color: #2d3e2b;
+        }
+
+        .cat-trigger:hover {
+            background: #ddd2c2;
+        }
+
+        .dropdown-cats {
+            position: absolute;
+            top: 115%;
+            left: 0;
+            background: white;
+            border-radius: 1.2rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+            min-width: 200px;
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 100;
+            padding: 0.5rem 0;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.1s ease;
+            pointer-events: none;
+            border: 1px solid #ece2d4;
+        }
+
+        .dropdown-cats.show {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dropdown-cats button {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 0.55rem 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.1s;
+            color: #2b4829;
+            font-weight: 500;
+        }
+
+        .dropdown-cats button:hover {
+            background: #f3ede4;
+        }
+
+        .dropdown-cats button.active-cat {
+            background: #e0cfbb;
+            color: #4a2c10;
+            font-weight: 600;
+            border-left: 3px solid #b97f2e;
+        }
+
+        .stats {
+            background: #f1ebe2;
+            border-radius: 2rem;
+            padding: 0.35rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #5e4e38;
+        }
+
+        /* сетка карточек */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .person-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.04);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0e9df;
+        }
+
+        .person-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-content {
+            padding: 1.3rem 1.2rem 1.2rem;
+            flex: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .person-name {
+            font-size: 1.28rem;
+            font-weight: 700;
+            color: #2d442a;
+            line-height: 1.25;
+        }
+
+        .age-badge {
+            background: #e9bc7d;
+            color: #2b2a1e;
+            border-radius: 2rem;
+            padding: 0.2rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .birthdate-line {
+            font-size: 0.78rem;
+            color: #7a663f;
+            margin: 0.3rem 0 0.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .specialization {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #9c7a48;
+            font-weight: 600;
+            margin: 0.5rem 0 0.3rem;
+        }
+
+        .bio-sentence {
+            font-size: 0.85rem;
+            line-height: 1.45;
+            color: #2c3e2f;
+            margin: 0.6rem 0 0.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .learn-btn {
+            display: inline-block;
+            background: #f3efe7;
+            border: 1px solid #cfc5b4;
+            padding: 0.45rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: #6a4e2a;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .learn-btn:hover {
+            background: #e3d7c8;
+            border-color: #b48b54;
+        }
+
+        .empty-message {
+            background: #fff6ea;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #7e6a4c;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #8e7a60;
+            border-top: 1px solid #e0d6c8;
+            padding-top: 1rem;
+        }
+
+        @media (max-width: 680px) {
+            body { padding: 1rem; }
+            .control-bar { flex-direction: column; align-items: stretch; }
+            .dropdown-cats { left: 0; right: auto; min-width: 180px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>✦ Юбилейный календарь</h1>
+    </div>
+
+    <div class="control-bar">
+        <div class="year-box">
+            <label>📆 Год</label>
+            <input type="number" id="targetYear" value="2026" step="1" min="500" max="2100">
+        </div>
+
+        <div style="display: flex; gap: 0.8rem; align-items: center;">
+            <div class="cat-drill" id="categoryDropdown">
+                <button class="cat-trigger" id="catTriggerBtn">
+                    <span>📁</span> <span id="selectedCategoryLabel">Все</span> <span>▼</span>
+                </button>
+                <div class="dropdown-cats" id="categoryMenu">
+                    <!-- динамическое наполнение категориями -->
+                </div>
+            </div>
+            <div class="stats" id="statsDisplay">—</div>
+        </div>
+    </div>
+
+    <div id="peopleGrid" class="people-grid">
+        <div class="empty-message">🔎 Загрузка...</div>
+    </div>
+    <footer>Источник: arboblar.uz · Нажмите «Узнать больше» для полной биографии</footer>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // ДАННЫЕ (полный перечень из файла)
+    // --------------------------------------------------------------
+    const rawList = [
+        { Name: "Хамза Хакимзаде Ниязи", Specialization: "Направления: Поэты", BirthDate: "7 Марта 1889 год", DeathDate: "18 Марта 1929 год", Biography: "Хамза Хакимзаде — узбекский поэт, драматург, общественный деятель, народный поэт Узбекской ССР. Обогатил классическую метрику народным стихом.", URL: "https://arboblar.uz/ru/people/khamza-khakimzade-niyazi" },
+        { Name: "Фуркат", Specialization: "Направления: Писатели, Поэты", BirthDate: "1858 год", DeathDate: "1909 год", Biography: "Закирджан Халмухаммед (Фуркат) — поэт-просветитель, поборник науки, русской культуры и прогресса.", URL: "https://arboblar.uz/ru/people/furkat" },
+        { Name: "Фаридиддин Аттар", Specialization: "Направления: Богословы и просветители, Поэты", BirthDate: "1119 год", DeathDate: "1230 год", Biography: "Персидский суфийский поэт, автор знаменитой «Беседы птиц».", URL: "https://arboblar.uz/ru/people/farididdin-attar" },
+        { Name: "Усман Насыр", Specialization: "Направления: Писатели,Поэты", BirthDate: "1913 год", DeathDate: "9 Марта 1944 год", Biography: "Узбекский поэт и драматург, его называли «восточным Пушкиным» за лирический дар.", URL: "https://arboblar.uz/ru/people/usman-nasyr" },
+        { Name: "Умарбеков Ульмас - Камал Рахимбекович", Specialization: "Направления: Писатели", BirthDate: "25 Января 1934 год", DeathDate: "10 Ноября 1994 год", Biography: "Узбекский писатель, автор романа «Человеком быть – это трудно».", URL: "https://arboblar.uz/ru/people/umarbekov-ulmas-kamal-rakhimbekovich" },
+        { Name: "Уйгун", Specialization: "Направления: Литературоведы,Поэты", BirthDate: "1905 год", DeathDate: "1990 год", Biography: "Народный поэт Узбекистана, один из основоположников узбекской советской литературы.", URL: "https://arboblar.uz/ru/people/ujgun" },
+        { Name: "Увайси", Specialization: "Направления: Поэты", BirthDate: "1871 год", DeathDate: "1845 год", Biography: "Классик кокандской поэзии, представительница узбекской женской лирики.", URL: "https://arboblar.uz/ru/people/uvajsi" },
+        { Name: "Ташмухамедов Туйчи Хафиз", Specialization: "Направления: Певцы и певицы", BirthDate: "1868 год", DeathDate: "1943 год", Biography: "Легендарный певец-хафиз, знаток макомов, народный певец УзССР.", URL: "https://arboblar.uz/ru/people/tashmukhamedov-tujchi-khafiz" },
+        { Name: "Тахир Малик", Specialization: "Направления: Журналисты", BirthDate: "27 Декабря 1946 год", DeathDate: "16 Мая 2019 год", Biography: "Писатель-фантаст, автор детективов и романа «Шайтанат».", URL: "https://arboblar.uz/ru/people/takhir-malik" },
+        { Name: "Тамара Ханум", Specialization: "Направления: Танцоры и Танцовщицы", BirthDate: "29 Марта 1906 год", DeathDate: "30 Июня 1991 год", Biography: "Танцовщица и певица, народная артистка СССР, «восточная Айседора Дункан».", URL: "https://arboblar.uz/ru/people/tamara-khanum" },
+        { Name: "Шукур Саъдулла", Specialization: "Направления: Писатели, Поэты", BirthDate: "15 Января 1912 год", DeathDate: "14 Сентября 1972 год", Biography: "Поэт и детский писатель, знаток детской психологии.", URL: "https://arboblar.uz/ru/people/shukur-sadulla" },
+        { Name: "Шахрух Мирзо", Specialization: "Направления:  Правители", BirthDate: "20 Августа 1377 год", DeathDate: "12 Марта 1447 год", Biography: "Сын Тамерлана, правитель Хорасана, отец Улугбека.", URL: "https://arboblar.uz/ru/people/shakhrukh-mirzo" },
+        { Name: "Шейхзаде Максуд Магсумбекович", Specialization: "Направления: Литературоведы, Поэты", BirthDate: "7 Ноября 1908 год", DeathDate: "19 Февраля 1967 год", Biography: "Поэт, переводчик, заслуженный деятель искусств УзССР.", URL: "https://arboblar.uz/ru/people/shejkhzade-maksud-magsumbekovich" },
+        { Name: "Шарафаддин Али Язди", Specialization: "Направления:  Астрономы, Историки, Философы", BirthDate: "1415 год", DeathDate: "1454 год", Biography: "Ученый-энциклопедист, автор «Зафарнаме» о походах Темура.", URL: "https://arboblar.uz/ru/people/sharafaddin-ali-yazdi" },
+        { Name: "Шаислам Махмудович Шамухамедов", Specialization: "Направления: Литературоведы, Переводчики, Писатели, Поэты", BirthDate: "16 Апреля 1921 год", DeathDate: "", Biography: "Востоковед-иранист, профессор, перевел «Шахнаме» на узбекский язык.", URL: "https://arboblar.uz/ru/people/shaislam-makhmudovich-shamukhamedov" },
+        { Name: "Худайбердыева Халима", Specialization: "Направления: Поэты", BirthDate: "17 Мая 1947 год", DeathDate: "", Biography: "Поэтесса, главный редактор журнала «Саодат», автор сборника «Первая любовь».", URL: "https://arboblar.uz/ru/people/khudajberdyeva-khalima" },
+        { Name: "Хашимов Уткир", Specialization: "Направления: Писатели", BirthDate: "4 Апреля 1941 год", DeathDate: "24 Мая 2013 год", Biography: "Народный писатель Узбекистана, автор романов «Свет без тени».", URL: "https://arboblar.uz/ru/people/khashimov-utkir" },
+        { Name: "Усман Азим", Specialization: "Направления:  Литературоведы, Писатели, Поэты", BirthDate: "1950 год", DeathDate: "", Biography: "Поэт, драматург, автор книги «Понимать человека».", URL: "https://arboblar.uz/ru/people/usman-azim" },
+        { Name: "Тухтабаев Худайберды", Specialization: "Направления: Писатели", BirthDate: "17 Декабря 1932 год", DeathDate: "", Biography: "Народный писатель Узбекистана, детский писатель.", URL: "https://arboblar.uz/ru/people/tukhtabaev-khudajberdy" },
+        { Name: "Саид Ахмад", Specialization: "Направления: Писатели", BirthDate: "1920 год", DeathDate: "5 Декабря 2007 год", Biography: "Мастер короткого рассказа, Герой Узбекистана.", URL: "https://arboblar.uz/ru/people/said-akhmad" },
+        { Name: "Садриддин Айни", Specialization: "Направления: Литературоведы, Писатели, Поэты", BirthDate: "1878 год", DeathDate: "15 Июля 1954 год", Biography: "Основатель узбекской и таджикской советской литературы.", URL: "https://arboblar.uz/ru/people/sadriddin-ajni" },
+        { Name: "Савицкий Игорь Витальевич", Specialization: "Направления: Художники", BirthDate: "4 Августа 1915 год", DeathDate: "27 Июля 1984 год", Biography: "Создатель Музея искусств в Нукусе («среднеазиатский Третьяков»).", URL: "https://arboblar.uz/ru/people/savitskij-igor-vitalevich" },
+        { Name: "Саади Ширази", Specialization: "Направления: Писатели, Поэты", BirthDate: "1219 год", DeathDate: "1293 год", Biography: "Персидский поэт-моралист, автор «Гулистана».", URL: "https://arboblar.uz/ru/people/saadi-shirazi" },
+        { Name: "Рашидов Шараф", Specialization: "Направления: Писатели, Политики", BirthDate: "6 Ноября 1917 год", DeathDate: "1983 год", Biography: "Первый секретарь ЦК Компартии Узбекистана, писатель.", URL: "https://arboblar.uz/ru/people/rashidov-sharaf" },
+        { Name: "Орипов Абдулла", Specialization: "Направления: Поэты", BirthDate: "21 Марта 1941 год", DeathDate: "5 Ноября 2016 год", Biography: "Герой Узбекистана, поэт, председатель Союза писателей.", URL: "https://arboblar.uz/ru/people/oripov-abdulla" },
+        { Name: "Омар Хайям", Specialization: "Направления: Математики, Поэты", BirthDate: "1048 год", DeathDate: "1122 год", Biography: "Гений рубаи, математик и астроном.", URL: "https://arboblar.uz/ru/people/omar-khajyam" },
+        { Name: "Мухтар Ашрафи", Specialization: "Направления: Композиторы и музыканты", BirthDate: "1 Июня 1912 год", DeathDate: "15 Декабря 1975 год", Biography: "Композитор, основоположник узбекской симфонической музыки.", URL: "https://arboblar.uz/ru/people/mukhtar-ashrafi" },
+        { Name: "Мухаммад Юсуф", Specialization: "Направления: Поэты", BirthDate: "26 Апреля 1954 год", DeathDate: "29 Июля 2001 год", Biography: "Поэт, автор знаменитого стихотворения о тюбетейке.", URL: "https://arboblar.uz/ru/people/mukhammad-yusuf" },
+        { Name: "Бехбуди Махмудходжа", Specialization: "Направления: Богословы и просветители, Писатели", BirthDate: "20 Января 1875 год", DeathDate: "1919 год", Biography: "Лидер джадидов, основоположник узбекской драматургии.", URL: "https://arboblar.uz/ru/people/bekhbudi-makhmudkhodzha" },
+        { Name: "Алишер Навои", Specialization: "Направления: Поэты", BirthDate: "9 Февраля 1441 год", DeathDate: "1501 год", Biography: "Великий поэт, мыслитель, основатель узбекской классической литературы.", URL: "https://arboblar.uz/ru/people/alisher-navoi" },
+        { Name: "Мирзо Улугбек", Specialization: "Направления: Астрономы, Правители", BirthDate: "22 Марта 1394 год", DeathDate: "1449 год", Biography: "Астроном, создатель обсерватории в Самарканде.", URL: "https://arboblar.uz/ru/people/mirzo-ulugbek" },
+        { Name: "Амир Темур", Specialization: "Направления: Правители", BirthDate: "9 Апреля 1336 год", DeathDate: "18 Февраля 1405 год", Biography: "Великий полководец, основатель империи Тимуридов.", URL: "https://arboblar.uz/ru/people/amir-temur" },
+        { Name: "Абу Али ибн Сина", Specialization: "Направления: Астрономы, Врачи, Философы", BirthDate: "16 Августа 980 год", DeathDate: "1037 год", Biography: "Гениальный врач и философ, автор «Канона врачебной науки».", URL: "https://arboblar.uz/ru/people/abu-ali-ibn-sina" }
+    ];
+
+    // извлечение года из строки
+    function extractYear(dateStr) {
+        if (!dateStr) return NaN;
+        const m = dateStr.match(/(\d{4})/);
+        return m ? parseInt(m[0], 10) : NaN;
+    }
+
+    // подготовка данных с корректировкой отдельных персон
+    const people = rawList.map(p => {
+        let by = extractYear(p.BirthDate);
+        if (p.Name === "Ташмухамедов Туйчи Хафиз" && by === 1968) by = 1868; // правка
+        if (p.Name === "Увайси" && by === 1871) by = 1871;
+        return { ...p, birthYear: by };
+    });
+
+    // юбилей: возраст в заданном году оканчивается на 0 или 5
+    function isJubilee(birthYear, targetYear) {
+        if (isNaN(birthYear)) return false;
+        const age = targetYear - birthYear;
+        if (age < 0) return false;
+        const last = age % 10;
+        return last === 0 || last === 5;
+    }
+
+    // получить людей для года (фильтр по возрасту)
+    function getPeopleForYear(targetYear) {
+        return people.filter(p => isJubilee(p.birthYear, targetYear));
+    }
+
+    // разбор категорий из строки Specialization
+    function parseCategories(specStr) {
+        let cleaned = specStr.replace(/Направления:\s*/g, '');
+        let parts = cleaned.split(/[,，、]+/).map(s => s.trim()).filter(s => s);
+        return parts;
+    }
+
+    // коллекция всех категорий (из всех записей)
+    const allCatsSet = new Set();
+    people.forEach(p => {
+        parseCategories(p.Specialization).forEach(c => allCatsSet.add(c));
+    });
+    const allCategories = Array.from(allCatsSet).sort((a,b)=>a.localeCompare(b));
+
+    // --- состояние интерфейса ---
+    let currentYear = 2026;
+    let activeCategory = "all";     // "all" или конкретная категория
+    let currentJubileePeople = [];   // люди, подходящие по возрасту
+
+    const yearInput = document.getElementById('targetYear');
+    const grid = document.getElementById('peopleGrid');
+    const statsSpan = document.getElementById('statsDisplay');
+    const catTriggerBtn = document.getElementById('catTriggerBtn');
+    const categoryMenu = document.getElementById('categoryMenu');
+    const selectedLabelSpan = document.getElementById('selectedCategoryLabel');
+
+    // рендер карточек
+    function render() {
+        // сначала обновляем список людей согласно году
+        currentJubileePeople = getPeopleForYear(currentYear);
+        let filtered = currentJubileePeople;
+        if (activeCategory !== "all") {
+            filtered = currentJubileePeople.filter(person => {
+                const cats = parseCategories(person.Specialization);
+                return cats.includes(activeCategory);
+            });
+        }
+        const count = filtered.length;
+        statsSpan.innerText = `👥 ${count}`;
+        if (count === 0) {
+            grid.innerHTML = `<div class="empty-message">✻ Нет результатов для выбранного года/категории</div>`;
+            return;
+        }
+        grid.innerHTML = filtered.map(person => {
+            const ageVal = currentYear - person.birthYear;
+            const birthDisplay = person.BirthDate ? person.BirthDate.trim() : "—";
+            let shortBio = person.Biography ? person.Biography.substring(0, 130) : "";
+            if (shortBio.length >= 130) shortBio = shortBio.substring(0, 127) + '…';
+            return `
+                <div class="person-card">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <span class="person-name">${escapeHtml(person.Name)}</span>
+                            <span class="age-badge">${ageVal} лет</span>
+                        </div>
+                        <div class="birthdate-line">📅 ${escapeHtml(birthDisplay)}</div>
+                        <div class="specialization">${escapeHtml(person.Specialization)}</div>
+                        <div class="bio-sentence">${escapeHtml(shortBio)}</div>
+                        <a href="${escapeHtml(person.URL)}" target="_blank" class="learn-btn">Узнать больше →</a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // построить выпадающий список категорий
+    function buildDropdown() {
+        let html = `<button data-cat="all" class="${activeCategory === 'all' ? 'active-cat' : ''}">📌 Все</button>`;
+        allCategories.forEach(cat => {
+            html += `<button data-cat="${escapeHtml(cat)}" class="${activeCategory === cat ? 'active-cat' : ''}">${escapeHtml(cat)}</button>`;
+        });
+        categoryMenu.innerHTML = html;
+        // вешаем события на кнопки внутри меню
+        document.querySelectorAll('#categoryMenu button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const catValue = btn.getAttribute('data-cat');
+                if (catValue) {
+                    activeCategory = catValue;
+                    // обновить текст на триггере
+                    if (activeCategory === 'all') selectedLabelSpan.innerText = 'Все';
+                    else selectedLabelSpan.innerText = catValue.length > 25 ? catValue.slice(0,22)+'…' : catValue;
+                    buildDropdown();     // перестроить для акцентов
+                    render();
+                    closeDropdown();
+                }
+            });
+        });
+    }
+
+    function toggleDropdown() {
+        const menu = document.getElementById('categoryMenu');
+        menu.classList.toggle('show');
+    }
+
+    function closeDropdown() {
+        const menu = document.getElementById('categoryMenu');
+        menu.classList.remove('show');
+    }
+
+    // обработчики событий
+    function updateYearAndRender() {
+        let newYear = parseInt(yearInput.value, 10);
+        if (isNaN(newYear)) newYear = 2026;
+        if (newYear < 400) newYear = 400;
+        if (newYear > 2100) newYear = 2100;
+        currentYear = newYear;
+        yearInput.value = currentYear;
+        render();
+    }
+
+    yearInput.addEventListener('change', updateYearAndRender);
+    yearInput.addEventListener('input', function() {
+        let v = parseInt(this.value, 10);
+        if (!isNaN(v) && v >= 300 && v <= 2200) {
+            currentYear = v;
+            render();
+        }
+    });
+
+    catTriggerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!catTriggerBtn.contains(e.target) && !categoryMenu.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+
+    // инициализация
+    buildDropdown();
+    selectedLabelSpan.innerText = 'Все';
+    currentYear = 2026;
+    yearInput.value = 2026;
+    render();
+</script>
+</body>
 </html>
